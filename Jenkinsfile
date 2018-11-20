@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'centos:7' }
+        docker.withServer('tcp://swarm.example.com:2375') { image 'centos:7' }
     }
     stages {
         stage('Build') {

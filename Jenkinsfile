@@ -9,6 +9,7 @@ pipeline {
                         echo 'Inside with Server'
                         sh 'docker info'
                     }
+                }
             }
         }
     }

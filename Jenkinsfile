@@ -1,16 +1,14 @@
 pipeline {
-    agent {
-        docker.withServer('tcp://swarm.example.com:2375') { image 'centos:7' }
-    }
+    agent any
     stages {
         stage('Build') {
             steps {
                 sh 'echo "Hello World"'
-                sh '''
-                    echo "Multiline shell steps works too"
-                    cat /etc/redhat-release
-                    ls -lah
-                '''
+                script {
+                    docker.withServer('tcp://192.168.0.22:2375') {
+                        echo 'Inside with Server'
+                        sh 'docker info'
+                    }
             }
         }
     }
